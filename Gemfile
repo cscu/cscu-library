@@ -18,6 +18,15 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'haml-rails'
+
+group :development, :test do
+  gem 'capybara'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  gem 'rspec-rails'
+  gem 'ZenTest'
+end
 
 # Use unicorn as the web server
 # gem 'unicorn'
