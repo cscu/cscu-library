@@ -15,6 +15,8 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+    when /^the course page for "([^"]*)"$/
+      course_path(Course.find_by_code($1))
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

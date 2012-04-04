@@ -11,8 +11,8 @@
 
   - @courses.each do |course|
     %tr
+      %td= link_to course.code, course
       %td= course.name
-      %td= course.code
       %td= course.description
       %td= link_to 'Show', course
       %td= link_to 'Edit', edit_course_path(course)
