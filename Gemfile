@@ -23,6 +23,7 @@ gem 'haml-rails'
 group :development, :test do
   gem 'capybara'
   gem 'cucumber-rails'
+  gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'ZenTest'
