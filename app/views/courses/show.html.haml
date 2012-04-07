@@ -10,6 +10,12 @@
   %b Description:
   = @course.description
 
+%p
+  %b Prerequisites:
+  %ul
+  - @course.prerequisites.each do |prereq|
+    %li= link_to prereq.code, course_path(prereq)
+
 = link_to 'Edit', edit_course_path(@course)
 \|
 = link_to 'Back', courses_path
