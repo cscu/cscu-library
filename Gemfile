@@ -22,11 +22,15 @@ gem 'haml-rails'
 
 group :development, :test do
   gem 'capybara'
-  gem 'cucumber-rails'
-  gem 'cucumber-rails-training-wheels'
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'ZenTest'
+  gem 'factory_girl_rails', '~> 3.0'
+end
+
+group :test do
+  gem 'cucumber-rails'
+  gem 'cucumber-rails-training-wheels'
 end
 
 # Use unicorn as the web server

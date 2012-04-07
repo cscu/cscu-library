@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120404030929) do
+ActiveRecord::Schema.define(:version => 20120407181506) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -20,5 +20,16 @@ ActiveRecord::Schema.define(:version => 20120404030929) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "prerequisites", :force => true do |t|
+    t.integer  "prereq_for_id"
+    t.integer  "prereq_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "prerequisites", ["prereq_for_id", "prereq_id"], :name => "index_prerequisites_on_prereq_for_id_and_prereq_id", :unique => true
+  add_index "prerequisites", ["prereq_for_id"], :name => "index_prerequisites_on_prereq_for_id"
+  add_index "prerequisites", ["prereq_id"], :name => "index_prerequisites_on_prereq_id"
 
 end
