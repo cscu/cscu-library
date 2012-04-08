@@ -16,7 +16,7 @@ describe "courses/edit" do
     assert_select "form", :action => courses_path(@course), :method => "post" do
       assert_select "input#course_name", :name => "course[name]"
       assert_select "input#course_code", :name => "course[code]"
-      assert_select "input#course_description", :name => "course[description]"
+      assert_select "textarea#course_description", :name => "course[description]"
     end
   end
 end

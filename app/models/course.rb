@@ -15,4 +15,33 @@ class Course < ActiveRecord::Base
   def has_prerequisite?(course)
     prerequisite_relationships.find_by_prereq_id(course)
   end
+
+  def Course.split_code(code)
+    code.upcase!
+    parts = code.match(/^([A-Z]+)(.+)/)
+    if parts
+      return [parts[1], parts[2]]
+    end
+  end
+
+  def code
+    unless subject.nil? or number.nil?
+      "#{subject.upcase}#{number}"
+    end
+  end
+
+  def code=(c)
+    parts = Course.split_code(c)
+    if parts
+      self.subject = parts[0]
+      self.number = parts[1]
+    end
+  end
+
+  def Course.find_by_code(c)
+    parts = split_code(c)
+    if parts
+      return Course.where(:subject => parts[0], :number => parts[1]).first
+    end
+  end
 end
