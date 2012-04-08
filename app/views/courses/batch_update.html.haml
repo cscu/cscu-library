@@ -1,0 +1,6 @@
+= form_tag course_batch_update_confirm_path, :method => 'get' do
+  .field
+    = label_tag :calendar_url, "Ryerson Calendar URL"
+    = text_field_tag :calendar_url
+  .actions
+    = submit_tag 'Batch Update'

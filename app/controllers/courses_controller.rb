@@ -1,3 +1,4 @@
+require 'iconv'
 class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
@@ -79,5 +80,18 @@ class CoursesController < ApplicationController
       format.html { redirect_to courses_url }
       format.json { head :ok }
     end
+  end
+
+  # GET /courses/batch_update
+  def batch_update
+  end
+
+  def confirm_batch_update
+    @calendar_url = params[:calendar_url]
+    ryerson_page = Mechanize.new.get(@calendar_url)
+    ryerson_page = Iconv.new('UTF-8//IGNORE', 'UTF-8').iconv(ryerson_page.content)
+    ryerson_page = Nokogiri.parse(ryerson_page)
+    @courses = Course.create_from_ryerson_calendar(ryerson_page)
+    redirect_to courses_url
   end
 end

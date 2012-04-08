@@ -1,4 +1,7 @@
 Library::Application.routes.draw do
+
+  match 'courses/batch_update' => 'courses#batch_update', :as => :course_batch_update
+  match 'courses/batch_update/confirm' => 'courses#confirm_batch_update', :as => :course_batch_update_confirm
   resources :courses
 
   # The priority is based upon order of creation:

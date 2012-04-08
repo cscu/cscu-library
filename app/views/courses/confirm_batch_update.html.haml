@@ -1,0 +1,16 @@
+%h1 Batch Updating from #{@calendar_url}
+%h2 Found #{@courses.size} courses
+= form_for "course[]" do |f|
+  - @courses.each do |course|
+    = f.fields_for course do |fields|
+      .field
+        = fields.label :code
+        = fields.text_field :code
+      .field
+        = fields.label :name
+        = fields.text_field :name
+      .field
+        = fields.label :description
+        = fields.text_area :description
+
+  = submit_tag 'Batch Update'

@@ -17,6 +17,10 @@ module NavigationHelpers
       '/'
     when /^the course page for "([^"]*)"$/
       course_path(Course.find_by_code($1))
+    when /^the courses batch update page$/
+      course_batch_update_path
+    when /^the confirm batch update page$/
+      course_batch_update_confirm_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

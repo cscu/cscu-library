@@ -20,6 +20,9 @@ end
 gem 'jquery-rails'
 gem 'haml-rails'
 
+gem 'nokogiri'
+gem 'mechanize'
+
 group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
