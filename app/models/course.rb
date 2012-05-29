@@ -57,9 +57,7 @@ class Course < ActiveRecord::Base
     courses.each do |c|
       course = find_by_code("#{c[:subject]}#{c[:number]}")
       c[:prereqs].each do |p|
-        puts "ADDING PREREQ #{p} TO #{course.code}"
         if prereq = find_by_code(p)
-        puts "SAVING PREREQ #{p} TO #{course.code}"
           course.add_prerequisite!(prereq) unless course.has_prerequisite?(prereq)
         end
       end

@@ -5,7 +5,7 @@ Feature: Quickly add courses from Ryerson calendar
 
   Scenario: Adding courses
     Given I am on the courses batch update page
-    When I fill in "Ryerson Calendar URL" with "test"
+    When I fill in "Ryerson Calendar URL" with "http://www.ryerson.ca/calendar/2012-2013/pg3173.html"
     And I press "Batch Update"
     Then I should be on the confirm batch update page
     And I should see "Found 58 new courses"
