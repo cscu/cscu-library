@@ -1,22 +1,25 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @course.name
-%p
-  %b Code:
-  = @course.code
-%p
-  %b Description:
-  = @course.description
+.hero-unit
+  %h1
+    = @course.code
+  %h2
+    = @course.name
+  %p
+    = @course.description
 
-%p
-  %b Prerequisites:
-  %ul
+%h2 
+  Prerequisites
+%table.table-striped
+  %tr
+    %th Code
+    %th Title
   - @course.prerequisites.each do |prereq|
-    %li= link_to prereq.code, course_path(prereq)
+    %tr
+      %td= link_to prereq.code, course_path(prereq)
+      %td= prereq.name
 
-%h3 Documents
+%h2 Documents
 %table.table-striped
   %tr
     %th Title
