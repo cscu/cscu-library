@@ -16,6 +16,27 @@
   - @course.prerequisites.each do |prereq|
     %li= link_to prereq.code, course_path(prereq)
 
+%h3 Documents
+%table.table-striped
+  %tr
+    %th Title
+    %th Date Added
+    %th Download
+  - @course.documents.each do |doc|
+    %td 
+      =link_to doc.title, document_path(doc)
+    %td
+      =doc.created_at
+    %td
+      %a.btn
+        %i.icon-download
+        Download
+    
+= link_to new_document_path, :class => 'btn' do
+  %i.icon-upload
+  Add Document
+%hr
+
 = link_to 'Edit', edit_course_path(@course)
 \|
 = link_to 'Back', courses_path
