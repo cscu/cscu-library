@@ -25,6 +25,8 @@ gem 'nokogiri'
 gem 'mechanize'
 
 gem 'paperclip', "~> 3.0"
+gem 'aws-s3'
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'capybara'
