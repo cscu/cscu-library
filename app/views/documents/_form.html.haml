@@ -1,4 +1,4 @@
-= form_for @document do |f|
+= form_for @document, :html => {:multipart => true} do |f|
   -if @document.errors.any?
     #error_explanation
       %h2= "#{pluralize(@document.errors.count, "error")} prohibited this document from being saved:"
@@ -12,5 +12,8 @@
   .field
     = f.label :title
     = f.text_field :title
+  .field
+    = f.label :file
+    = f.file_field :file
   .actions
     = f.submit 'Save'
