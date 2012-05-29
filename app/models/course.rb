@@ -3,6 +3,7 @@ class Course < ActiveRecord::Base
                                         :class_name => "Prerequisite",
                                         :dependent => :destroy
   has_many :prerequisites, :through => :prerequisite_relationships, :source => :prereq
+  has_many :documents
 
   def add_prerequisite!(course)
     prerequisite_relationships.create!(:prereq_id => course.id)
