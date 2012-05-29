@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120408021508) do
+ActiveRecord::Schema.define(:version => 20120529210445) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(:version => 20120408021508) do
   add_index "courses", ["number"], :name => "index_courses_on_number"
   add_index "courses", ["subject", "number"], :name => "index_courses_on_subject_and_number", :unique => true
   add_index "courses", ["subject"], :name => "index_courses_on_subject"
+
+  create_table "documents", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "prerequisites", :force => true do |t|
     t.integer  "prereq_for_id"
