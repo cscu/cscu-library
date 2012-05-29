@@ -1,22 +1,20 @@
 %h1 Listing courses
 
-%table
+%table.table.table-striped
   %tr
     %th Name
     %th Code
-    %th Description
-    %th
-    %th
     %th
 
   - @courses.each do |course|
     %tr
       %td= link_to course.code, course
       %td= course.name
-      %td= course.description
-      %td= link_to 'Show', course
-      %td= link_to 'Edit', edit_course_path(course)
-      %td= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete
+      %td
+        .btn-group
+          =link_to 'Show', course, :class => 'btn'
+          =link_to 'Edit', edit_course_path(course), :class => 'btn'
+          =link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete, :class => ['btn', 'btn-danger']
 
 %br
 

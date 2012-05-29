@@ -22,6 +22,5 @@ describe "courses/index" do
     assert_select "tr>td", :text => "Name".to_s, :count => 2
     assert_select "tr>td", :text => "ABC123".to_s, :count => 1
     assert_select "tr>td", :text => "ABS202".to_s, :count => 1
-    assert_select "tr>td", :text => "Description".to_s, :count => 2
   end
 end

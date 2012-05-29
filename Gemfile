@@ -19,6 +19,7 @@ end
 
 gem 'jquery-rails'
 gem 'haml-rails'
+gem 'less-rails-bootstrap'
 
 gem 'nokogiri'
 gem 'mechanize'
