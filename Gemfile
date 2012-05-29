@@ -24,6 +24,8 @@ gem 'less-rails-bootstrap'
 gem 'nokogiri'
 gem 'mechanize'
 
+gem 'paperclip', "~> 3.0"
+
 group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
