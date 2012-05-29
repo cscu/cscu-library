@@ -25,9 +25,13 @@ class DocumentsController < ApplicationController
   # GET /documents/new.json
   def new
     @document = Document.new
+    if params[:course] then
+      course = Course.find(params[:course])
+      @document.course = course if course
+    end
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html 
       format.json { render json: @document }
     end
   end

@@ -24,18 +24,19 @@
   %tr
     %th Title
     %th Date Added
-    %th Download
+    %th
   - @course.documents.each do |doc|
-    %td 
-      =link_to doc.title, document_path(doc)
-    %td
-      =doc.created_at
-    %td
-      %a.btn
-        %i.icon-download
-        Download
+    %tr
+      %td 
+        =link_to doc.title, document_path(doc)
+      %td
+        =doc.created_at
+      %td
+        %a.btn
+          %i.icon-download
+          Download
     
-= link_to new_document_path, :class => 'btn' do
+= link_to new_document_path({:course => @course}), :class => 'btn' do
   %i.icon-upload
   Add Document
 %hr
