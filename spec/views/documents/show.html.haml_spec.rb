@@ -3,7 +3,8 @@ require 'spec_helper'
 describe "documents/show" do
   before(:each) do
     @document = assign(:document, stub_model(Document,
-      :title => "Title"
+      :title => "Title",
+      :course => stub_model(Course)
     ))
   end
 

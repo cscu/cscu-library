@@ -10,6 +10,12 @@
     %h2 Adding to #{@document.course.code}
     = f.hidden_field :course_id, :value => @document.course.id
   .field
+    = f.label :year
+    = f.text_field :year
+  .field
+    = f.label :semester
+    = f.select(:semester, options_for_select(Document.semesters))
+  .field
     = f.label :title
     = f.text_field :title
   .field

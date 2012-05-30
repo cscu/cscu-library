@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120530004209) do
+ActiveRecord::Schema.define(:version => 20120530022825) do
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(:version => 20120530004209) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+    t.integer  "year"
+    t.string   "semester"
   end
 
   create_table "prerequisites", :force => true do |t|

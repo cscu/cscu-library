@@ -2,9 +2,22 @@
 
 %h1 #{@document.course.code} - #{@document.title}
 
-%div
-  Course:
-  =link_to @document.course.code, course_path(@document.course)
+%table
+  %tr
+    %td
+      %b Course:
+    %td
+      =link_to @document.course.code, course_path(@document.course)
+  %tr
+    %td
+      %b Year:
+    %td
+      =@document.year
+  %tr
+    %td
+      %b Semester:
+    %td
+      =@document.semester
 
 %div
   -if @document.file.exists?
