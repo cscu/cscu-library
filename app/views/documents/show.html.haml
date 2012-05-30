@@ -1,8 +1,16 @@
 %p#notice= notice
 
-%p
-  %b Title:
-  = @document.title
+%h1 #{@document.course.code} - #{@document.title}
+
+%div
+  Course:
+  =link_to @document.course.code, course_path(@document.course)
+
+%div
+  -if @document.file.exists?
+    =link_to @document.file.url, :class => 'btn' do
+      %i.icon-download
+      Download
 
 = link_to 'Edit', edit_document_path(@document)
 \|
