@@ -12,4 +12,8 @@ class Document < ActiveRecord::Base
   def self.semesters
     ['Fall','Winter','Spring','Summer']
   end
+
+  def self.categories
+    ['Final','Test','Quiz','Notes','Other']
+  end
 end
