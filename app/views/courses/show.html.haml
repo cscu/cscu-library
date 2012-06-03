@@ -20,15 +20,24 @@
       %td= prereq.name
 
 %h2 Documents
-%table.table-striped
+%table.table-striped.document-list
   %tr
     %th Title
+    %th Type
+    %th Semester
+    %th Year
     %th Date Added
     %th
   - @course.documents.each do |doc|
     %tr
       %td 
         =link_to doc.title, document_path(doc)
+      %td
+        =doc.category
+      %td
+        =doc.semester
+      %td
+        =doc.year
       %td
         =doc.created_at
       %td
