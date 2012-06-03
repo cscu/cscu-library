@@ -4,12 +4,14 @@
   %tr
     %th Name
     %th Code
+    %th Last Updated
     %th
 
   - @courses.each do |course|
     %tr
       %td= link_to course.code, course
       %td= course.name
+      %td= "#{time_ago_in_words(course.updated_at)} ago"
       %td
         .btn-group
           =link_to 'Show', course, :class => 'btn'

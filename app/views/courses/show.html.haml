@@ -27,7 +27,7 @@
     %th Type
     %th Semester
     %th Year
-    %th Date Added
+    %th Last Updated
     %th
   - @course.documents.each do |doc|
     %tr
@@ -40,7 +40,7 @@
       %td
         =doc.year
       %td
-        =doc.created_at
+        ="#{time_ago_in_words(doc.updated_at)} ago"
       %td
         - if doc.file.exists?
           =link_to doc.file.url, :class => 'btn' do
