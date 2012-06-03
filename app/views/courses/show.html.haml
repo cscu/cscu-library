@@ -8,16 +8,17 @@
   %p
     = @course.description
 
-%h2 
-  Prerequisites
-%table.table-striped
-  %tr
-    %th Code
-    %th Title
-  - @course.prerequisites.each do |prereq|
+- unless @course.prerequisites.empty?
+  %h2 
+    Prerequisites
+  %table.table-striped
     %tr
-      %td= link_to prereq.code, course_path(prereq)
-      %td= prereq.name
+      %th Code
+      %th Title
+    - @course.prerequisites.each do |prereq|
+      %tr
+        %td= link_to prereq.code, course_path(prereq)
+        %td= prereq.name
 
 %h2 Documents
 %table.table-striped.document-list
