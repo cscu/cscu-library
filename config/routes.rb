@@ -1,7 +1,5 @@
 Library::Application.routes.draw do
 
-  devise_for :admins
-
   resources :documents
 
   root :to => 'home#index'
