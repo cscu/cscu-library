@@ -36,6 +36,9 @@
               =link_to doc.file.url, :class => 'btn' do
                 %i.icon-download
                 Download
+= link_to new_document_path({:course => @course}), :class => 'btn' do
+  %i.icon-upload
+  Add Document
 
 - unless @course.prerequisites.empty?
   %h2 
@@ -49,9 +52,6 @@
         %td= link_to prereq.code, course_path(prereq)
         %td= prereq.name
     
-= link_to new_document_path({:course => @course}), :class => 'btn' do
-  %i.icon-upload
-  Add Document
 %hr
 
 = link_to 'Edit', edit_course_path(@course)
