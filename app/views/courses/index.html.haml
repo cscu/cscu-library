@@ -4,6 +4,7 @@
   %tr
     %th Name
     %th Code
+    %th # of Documents
     %th Last Updated
     %th
 
@@ -11,6 +12,7 @@
     %tr
       %td= link_to course.code, course
       %td= course.name
+      %td= course.documents.count
       %td= "#{time_ago_in_words(course.updated_at)} ago"
       %td
         .btn-group
