@@ -1,4 +1,6 @@
 class DocumentsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :show]
+
   # GET /documents
   # GET /documents.json
   def index
