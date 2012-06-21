@@ -36,9 +36,10 @@
               =link_to doc.file.url, :class => 'btn' do
                 %i.icon-download
                 Download
-= link_to new_document_path({:course => @course}), :class => 'btn' do
-  %i.icon-upload
-  Add Document
+-if user_signed_in?
+  = link_to new_document_path({:course => @course}), :class => 'btn' do
+    %i.icon-upload
+    Add Document
 
 - unless @course.prerequisites.empty?
   %h2 
@@ -54,6 +55,7 @@
     
 %hr
 
-= link_to 'Edit', edit_course_path(@course)
-\|
+-if user_signed_in?
+  = link_to 'Edit', edit_course_path(@course)
+  \|
 = link_to 'Back', courses_path

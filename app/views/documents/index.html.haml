@@ -4,16 +4,18 @@
   %tr
     %th Title
     %th Last Updated
-    %th
-    %th
-    %th
+    -if user_signed_in?
+      %th
 
   - @documents.each do |document|
     %tr
-      %td= document.title
+      %td= link_to document.title, document
       %td= "#{time_ago_in_words(document.updated_at)} ago"
-      %td= link_to 'Show', document
-      %td= link_to 'Edit', edit_document_path(document)
-      %td= link_to 'Destroy', document, :confirm => 'Are you sure?', :method => :delete
+      -if user_signed_in?
+        %td
+          .btn-group
+            =link_to 'Show', document, :class => 'btn'
+            =link_to 'Edit', edit_document_path(document), :class => 'btn'
+            =link_to 'Destroy', document, :confirm => 'Are you sure?', :method => :delete, :class => ['btn', 'btn-danger']
 
 %br

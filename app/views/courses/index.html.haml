@@ -1,12 +1,13 @@
-%h1 Listing courses
-
+-if user_signed_in?
+  = link_to 'New Course', new_course_path, :class => 'btn'
 %table.table.table-striped
   %tr
     %th Name
     %th Code
     %th # of Documents
     %th Last Updated
-    %th
+    -if user_signed_in?
+      %th
 
   - @courses.each do |course|
     %tr
@@ -14,12 +15,9 @@
       %td= course.name
       %td= course.documents.count
       %td= "#{time_ago_in_words(course.updated_at)} ago"
-      %td
-        .btn-group
-          =link_to 'Show', course, :class => 'btn'
-          =link_to 'Edit', edit_course_path(course), :class => 'btn'
-          =link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete, :class => ['btn', 'btn-danger']
-
-%br
-
-= link_to 'New Course', new_course_path
+      -if user_signed_in?
+        %td
+          .btn-group
+            =link_to 'Show', course, :class => 'btn'
+            =link_to 'Edit', edit_course_path(course), :class => 'btn'
+            =link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete, :class => ['btn', 'btn-danger']

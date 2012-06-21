@@ -25,6 +25,7 @@
       %i.icon-download
       Download
 
-= link_to 'Edit', edit_document_path(@document)
-\|
+-if user_signed_in?
+  = link_to 'Edit', edit_document_path(@document)
+  \|
 = link_to "Back to #{@document.course.code}", course_path(@document.course)
