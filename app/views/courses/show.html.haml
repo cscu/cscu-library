@@ -19,7 +19,7 @@
       %th Year
       %th Last Updated
       %th
-      - @course.documents.sort{|a,b| b.year <=> a.year}.each do |doc|
+      - sort_by_year(@course.documents).each do |doc|
         %tr
           %td 
             =link_to doc.title, document_path(doc)
