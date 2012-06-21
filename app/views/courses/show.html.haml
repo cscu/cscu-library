@@ -19,23 +19,23 @@
       %th Year
       %th Last Updated
       %th
-    - @course.documents.each do |doc|
-      %tr
-        %td 
-          =link_to doc.title, document_path(doc)
-        %td
-          =doc.category
-        %td
-          =doc.semester
-        %td
-          =doc.year
-        %td
-          ="#{time_ago_in_words(doc.updated_at)} ago"
-        %td
-          - if doc.file.exists?
-            =link_to doc.file.url, :class => 'btn' do
-              %i.icon-download
-              Download
+      - @course.documents.sort{|a,b| b.year <=> a.year}.each do |doc|
+        %tr
+          %td 
+            =link_to doc.title, document_path(doc)
+          %td
+            =doc.category
+          %td
+            =doc.semester
+          %td
+            =doc.year
+          %td
+            ="#{time_ago_in_words(doc.updated_at)} ago"
+          %td
+            - if doc.file.exists?
+              =link_to doc.file.url, :class => 'btn' do
+                %i.icon-download
+                Download
 
 - unless @course.prerequisites.empty?
   %h2 
