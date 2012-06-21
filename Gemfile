@@ -26,6 +26,8 @@ gem 'mechanize'
 gem 'paperclip', "~> 3.0"
 gem 'aws-sdk'
 
+gem 'devise'
+
 group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
