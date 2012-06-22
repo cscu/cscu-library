@@ -26,7 +26,7 @@ gem 'mechanize'
 gem 'paperclip', "~> 3.0"
 gem 'aws-sdk'
 
-gem 'devise'
+gem 'devise', "~> 2.1"
 
 group :development, :test do
   gem 'capybara'

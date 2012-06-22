@@ -230,7 +230,7 @@ DEPENDENCIES
   cucumber-rails
   cucumber-rails-training-wheels
   database_cleaner
-  devise
+  devise (~> 2.1)
   factory_girl_rails (~> 3.0)
   haml-rails
   jquery-rails
