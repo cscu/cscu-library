@@ -29,3 +29,7 @@ Feature: Finding a course
     When I search for "CPS109"
     Then I should be on the course page for "CPS109"
 
+  Scenario: Search for invalid course from homepage
+    Given I am on the home page
+    When I search for "Computer Science I"
+    Then I should be on the courses page

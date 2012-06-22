@@ -102,6 +102,10 @@ class CoursesController < ApplicationController
   def search
     param = params[:query]
     course = Course.find_by_code(param)
-    redirect_to course
+    if course.nil? then
+      redirect_to courses_url
+    else
+      redirect_to course
+    end
   end
 end
