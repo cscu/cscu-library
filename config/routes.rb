@@ -7,6 +7,7 @@ Library::Application.routes.draw do
   root :to => 'home#index'
   match 'courses/batch_update' => 'courses#batch_update', :as => :course_batch_update
   match 'courses/batch_update/confirm' => 'courses#confirm_batch_update', :as => :course_batch_update_confirm
+  match 'courses/search' => 'courses#search', :as => :course_search
   resources :courses
 
   # The priority is based upon order of creation:

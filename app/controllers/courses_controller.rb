@@ -1,6 +1,6 @@
 require 'iconv'
 class CoursesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :search]
 
   # GET /courses
   # GET /courses.json
@@ -95,5 +95,13 @@ class CoursesController < ApplicationController
     ryerson_page = Nokogiri.parse(ryerson_page)
     @courses = Course.create_from_ryerson_calendar(ryerson_page)
     redirect_to courses_url
+  end
+
+
+  # GET /courses/search/:code
+  def search
+    param = params[:query]
+    course = Course.find_by_code(param)
+    redirect_to course
   end
 end

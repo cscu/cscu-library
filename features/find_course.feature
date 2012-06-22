@@ -14,3 +14,18 @@ Feature: Finding a course
     When I follow "CPS109"
     Then I should be on the course page for "CPS109"
 
+  Scenario: Search for course from homepage
+    Given I am on the home page
+    When I search for "CPS109"
+    Then I should be on the course page for "CPS109"
+
+  Scenario: Search for course from courses
+    Given I am on the courses page
+    When I search for "CPS109"
+    Then I should be on the course page for "CPS109"
+
+  Scenario: Search for course from course
+    Given I am on the course page for "CPS305"
+    When I search for "CPS109"
+    Then I should be on the course page for "CPS109"
+
