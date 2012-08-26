@@ -17,6 +17,14 @@ class Course < ActiveRecord::Base
     prerequisite_relationships.find_by_prereq_id(course)
   end
 
+  def last_update_time
+    time = updated_at
+    documents.each do |doc|
+      time = doc.updated_at if doc.updated_at > time
+    end
+    time
+  end
+
   def Course.split_code(code)
     code.upcase!
     parts = code.match(/^([A-Z]+)(.+)/)
