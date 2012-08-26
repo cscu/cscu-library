@@ -2,6 +2,8 @@ Feature: Quickly add courses from Ryerson calendar
   As the maintainer of CSCU Library
   So that I can quickly update all the courses
   I should be able to copy course information from Ryerson's calendar
+  Background:
+    Given I am logged in
 
   Scenario: Adding courses
     Given I am on the courses batch update page
