@@ -9,7 +9,7 @@
     -if user_signed_in?
       %th
 
-  - @courses.each do |course|
+  - @courses.sort{|a,b| a.code <=> b.code}.each do |course|
     %tr
       %td= link_to course.code, course
       %td= course.name
