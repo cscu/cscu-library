@@ -32,7 +32,7 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'rspec-rails'
-  gem 'ZenTest'
+  gem 'ZenTest', '~> 4.9'
   gem 'factory_girl_rails', '~> 3.0'
   gem 'sqlite3'
 end

@@ -1,7 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    ZenTest (4.7.0)
+    ZenTest (4.9.1)
     actionmailer (3.1.0)
       actionpack (= 3.1.0)
       mail (~> 2.3.0)
@@ -223,7 +223,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ZenTest
+  ZenTest (~> 4.9)
   aws-sdk
   capybara
   coffee-rails (~> 3.1.0)
