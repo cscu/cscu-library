@@ -1,6 +1,9 @@
 require 'iconv'
 class CoursesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :search]
+  before_filter :except => [:index, :show, :search] do
+    redirect_to new_user_session_path unless current_user && current_user.admin?
+  end
 
   # GET /courses
   # GET /courses.json

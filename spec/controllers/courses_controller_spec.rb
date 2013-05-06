@@ -28,134 +28,306 @@ describe CoursesController do
   end
   
   describe "GET index" do
-    it "assigns all courses as @courses" do
-      course = Course.create! valid_attributes
-      get :index, {}
-      assigns(:courses).should eq([course])
+    context "anonymous user" do
+      before(:each){logout}
+      it "assigns all courses as @courses" do
+        course = Course.create! valid_attributes
+        get :index, {}
+        assigns(:courses).should eq([course])
+      end
+    end
+
+    context "normal user" do
+      before(:each){login_user}
+      it "assigns all courses as @courses" do
+        course = Course.create! valid_attributes
+        get :index, {}
+        assigns(:courses).should eq([course])
+      end
+    end
+
+    context "admin user" do
+      before(:each){login_user}
+      it "assigns all courses as @courses" do
+        course = Course.create! valid_attributes
+        get :index, {}
+        assigns(:courses).should eq([course])
+      end
     end
   end
 
   describe "GET show" do
-    it "assigns the requested course as @course" do
-      course = Course.create! valid_attributes
-      get :show, {:id => course.to_param}
-      assigns(:course).should eq(course)
+    context "anonymous user" do
+      before(:each){logout}
+      it "assigns the requested course as @course" do
+        course = Course.create! valid_attributes
+        get :show, {:id => course.to_param}
+        assigns(:course).should eq(course)
+      end
+    end
+
+    context "normal user" do
+      before(:each){login_user}
+      it "assigns the requested course as @course" do
+        course = Course.create! valid_attributes
+        get :show, {:id => course.to_param}
+        assigns(:course).should eq(course)
+      end
+    end
+
+    context "admin user" do
+      before(:each){login_admin}
+      it "assigns the requested course as @course" do
+        course = Course.create! valid_attributes
+        get :show, {:id => course.to_param}
+        assigns(:course).should eq(course)
+      end
     end
   end
 
   describe "GET new" do
-    before(:each){login_user}
-    it "assigns a new course as @course" do
-      get :new, {}
-      assigns(:course).should be_a_new(Course)
+    context "anonymous user" do
+      before(:each){logout}
+      it "redirects to login page" do
+        get :new, {}
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    context "normal user" do
+      before(:each){login_user}
+      it "redirects to login page" do
+        get :new, {}
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    context "admin user" do
+      before(:each){login_admin}
+      it "assigns a new course as @course" do
+        get :new, {}
+        assigns(:course).should be_a_new(Course)
+      end
     end
   end
 
   describe "GET edit" do
-    before(:each){login_user}
-    it "assigns the requested course as @course" do
-      course = Course.create! valid_attributes
-      get :edit, {:id => course.to_param}
-      assigns(:course).should eq(course)
+    context "anonymous user" do
+      before(:each){logout}
+      it "redirects to login page" do
+        course = Course.create! valid_attributes
+        get :edit, {:id => course.to_param}
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    context "normal user" do
+      before(:each){login_user}
+      it "redirects to login page" do
+        course = Course.create! valid_attributes
+        get :edit, {:id => course.to_param}
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    context "admin user" do
+      before(:each){login_admin}
+      it "assigns the requested course as @course" do
+        course = Course.create! valid_attributes
+        get :edit, {:id => course.to_param}
+        assigns(:course).should eq(course)
+      end
     end
   end
 
   describe "POST create" do
-    before(:each){login_user}
-    describe "with valid params" do
-      it "creates a new Course" do
+    context "anonymous user" do
+      before(:each){logout}
+      it "does not create a new course" do
         expect {
           post :create, {:course => valid_attributes}
-        }.to change(Course, :count).by(1)
+        }.not_to change(Course, :count)
       end
-
-      it "assigns a newly created course as @course" do
+      it "redirects to login page" do
         post :create, {:course => valid_attributes}
-        assigns(:course).should be_a(Course)
-        assigns(:course).should be_persisted
-      end
-
-      it "redirects to the created course" do
-        post :create, {:course => valid_attributes}
-        response.should redirect_to(Course.last)
+        response.should redirect_to(new_user_session_path)
       end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved course as @course" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Course.any_instance.stub(:save).and_return(false)
-        post :create, {:course => {}}
-        assigns(:course).should be_a_new(Course)
+    context "normal user" do
+      before(:each){login_user}
+      it "does not create a new course" do
+        expect {
+          post :create, {:course => valid_attributes}
+        }.not_to change(Course, :count)
+      end
+      it "redirects to login page" do
+        post :create, {:course => valid_attributes}
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    context "admin user" do
+      before(:each){login_admin}
+      describe "with valid params" do
+        it "creates a new Course" do
+          expect {
+            post :create, {:course => valid_attributes}
+          }.to change(Course, :count).by(1)
+        end
+
+        it "assigns a newly created course as @course" do
+          post :create, {:course => valid_attributes}
+          assigns(:course).should be_a(Course)
+          assigns(:course).should be_persisted
+        end
+
+        it "redirects to the created course" do
+          post :create, {:course => valid_attributes}
+          response.should redirect_to(Course.last)
+        end
       end
 
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Course.any_instance.stub(:save).and_return(false)
-        post :create, {:course => {}}
-        response.should render_template("new")
+      describe "with invalid params" do
+        it "assigns a newly created but unsaved course as @course" do
+          # Trigger the behavior that occurs when invalid params are submitted
+          Course.any_instance.stub(:save).and_return(false)
+          post :create, {:course => {}}
+          assigns(:course).should be_a_new(Course)
+        end
+
+        it "re-renders the 'new' template" do
+          # Trigger the behavior that occurs when invalid params are submitted
+          Course.any_instance.stub(:save).and_return(false)
+          post :create, {:course => {}}
+          response.should render_template("new")
+        end
       end
     end
   end
 
   describe "PUT update" do
-    before(:each){login_user}
-    describe "with valid params" do
-      it "updates the requested course" do
+    context "anonymous user" do
+      before(:each){logout}
+      it "does not update the requested course" do
         course = Course.create! valid_attributes
-        # Assuming there are no other courses in the database, this
-        # specifies that the Course created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Course.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => course.to_param, :course => {'these' => 'params'}}
+        Course.any_instance.should_not_receive(:update_attributes)
+        put :update, {:id => course.to_param, :course => valid_attributes}
       end
-
-      it "assigns the requested course as @course" do
+      it "redirects to login page" do
         course = Course.create! valid_attributes
         put :update, {:id => course.to_param, :course => valid_attributes}
-        assigns(:course).should eq(course)
-      end
-
-      it "redirects to the course" do
-        course = Course.create! valid_attributes
-        put :update, {:id => course.to_param, :course => valid_attributes}
-        response.should redirect_to(course)
+        response.should redirect_to(new_user_session_path)
       end
     end
 
-    describe "with invalid params" do
-      it "assigns the course as @course" do
+    context "normal user" do
+      before(:each){login_user}
+      it "does not update the requested course" do
         course = Course.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Course.any_instance.stub(:save).and_return(false)
-        put :update, {:id => course.to_param, :course => {}}
-        assigns(:course).should eq(course)
+        Course.any_instance.should_not_receive(:update_attributes)
+        put :update, {:id => course.to_param, :course => valid_attributes}
+      end
+      it "redirects to login page" do
+        course = Course.create! valid_attributes
+        put :update, {:id => course.to_param, :course => valid_attributes}
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    context "admin user" do
+      before(:each){login_admin}
+
+      describe "with valid params" do
+        it "updates the requested course" do
+          course = Course.create! valid_attributes
+          # Assuming there are no other courses in the database, this
+          # specifies that the Course created on the previous line
+          # receives the :update_attributes message with whatever params are
+          # submitted in the request.
+          Course.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+          put :update, {:id => course.to_param, :course => {'these' => 'params'}}
+        end
+
+        it "assigns the requested course as @course" do
+          course = Course.create! valid_attributes
+          put :update, {:id => course.to_param, :course => valid_attributes}
+          assigns(:course).should eq(course)
+        end
+
+        it "redirects to the course" do
+          course = Course.create! valid_attributes
+          put :update, {:id => course.to_param, :course => valid_attributes}
+          response.should redirect_to(course)
+        end
       end
 
-      it "re-renders the 'edit' template" do
-        course = Course.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Course.any_instance.stub(:save).and_return(false)
-        put :update, {:id => course.to_param, :course => {}}
-        response.should render_template("edit")
+      describe "with invalid params" do
+        it "assigns the course as @course" do
+          course = Course.create! valid_attributes
+          # Trigger the behavior that occurs when invalid params are submitted
+          Course.any_instance.stub(:save).and_return(false)
+          put :update, {:id => course.to_param, :course => {}}
+          assigns(:course).should eq(course)
+        end
+
+        it "re-renders the 'edit' template" do
+          course = Course.create! valid_attributes
+          # Trigger the behavior that occurs when invalid params are submitted
+          Course.any_instance.stub(:save).and_return(false)
+          put :update, {:id => course.to_param, :course => {}}
+          response.should render_template("edit")
+        end
       end
     end
   end
 
   describe "DELETE destroy" do
-    before(:each){login_user}
-    it "destroys the requested course" do
-      course = Course.create! valid_attributes
-      expect {
+    context "anonymous user" do
+      before(:each){logout}
+      it "does not destroy the requested course" do
+        course = Course.create! valid_attributes
+        expect {
+          delete :destroy, {:id => course.to_param}
+        }.not_to change(Course, :count)
+      end
+      it "redirects to login page" do
+        course = Course.create! valid_attributes
         delete :destroy, {:id => course.to_param}
-      }.to change(Course, :count).by(-1)
+        response.should redirect_to(new_user_session_path)
+      end
     end
 
-    it "redirects to the courses list" do
-      course = Course.create! valid_attributes
-      delete :destroy, {:id => course.to_param}
-      response.should redirect_to(courses_url)
+    context "normal user" do
+      before(:each){login_user}
+      it "does not destroy the requested course" do
+        course = Course.create! valid_attributes
+        expect {
+          delete :destroy, {:id => course.to_param}
+        }.not_to change(Course, :count)
+      end
+      it "redirects to login page" do
+        course = Course.create! valid_attributes
+        delete :destroy, {:id => course.to_param}
+        response.should redirect_to(new_user_session_path)
+      end
+    end
+
+    context "admin user" do
+      before(:each){login_admin}
+      
+      it "destroys the requested course" do
+        course = Course.create! valid_attributes
+        expect {
+          delete :destroy, {:id => course.to_param}
+        }.to change(Course, :count).by(-1)
+      end
+
+      it "redirects to the courses list" do
+        course = Course.create! valid_attributes
+        delete :destroy, {:id => course.to_param}
+        response.should redirect_to(courses_url)
+      end
     end
   end
 

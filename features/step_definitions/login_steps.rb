@@ -17,3 +17,17 @@ end
 Given /^I am logged in$/ do
   step "a logged in user"
 end
+
+Given /^I am logged in as an administrator$/ do
+  @admin = User.create!({
+             :email => "admin@example.com",
+             :password => "12345678",
+             :password_confirmation => "12345678",
+           })
+  @admin.admin = true
+  @admin.save!
+  visit new_user_session_url
+  fill_in "Email", :with => "admin@example.com"
+  fill_in "Password", :with => "12345678"
+  click_button "Sign in"
+end

@@ -3,7 +3,7 @@ Feature: Quickly add courses from Ryerson calendar
   So that I can quickly update all the courses
   I should be able to copy course information from Ryerson's calendar
   Background:
-    Given I am logged in
+    Given I am logged in as an administrator
 
   Scenario: Adding courses
     Given I am on the courses batch update page
