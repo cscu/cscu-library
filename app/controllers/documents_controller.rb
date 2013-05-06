@@ -1,5 +1,8 @@
 class DocumentsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :except => [:index, :show] do
+    redirect_to new_user_session_path unless current_user && current_user.admin?
+  end
 
   # GET /documents
   # GET /documents.json
