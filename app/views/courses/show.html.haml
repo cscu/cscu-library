@@ -38,7 +38,7 @@
                 Download
             - else
               Available in ENG111
--if user_signed_in?
+-if user_signed_in? && current_user.admin?
   = link_to new_document_path({:course => @course}), :class => 'btn' do
     %i.icon-upload
     Add Document
@@ -57,7 +57,7 @@
     
 %hr
 
--if user_signed_in?
+-if user_signed_in? && current_user.admin?
   = link_to 'Edit', edit_course_path(@course)
   \|
 = link_to 'Back', courses_path

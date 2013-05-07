@@ -4,14 +4,14 @@
   %tr
     %th Title
     %th Last Updated
-    -if user_signed_in?
+    -if user_signed_in? && current_user.admin?
       %th
 
   - @documents.each do |document|
     %tr
       %td= link_to document.title, document
       %td= "#{time_ago_in_words(document.updated_at)} ago"
-      -if user_signed_in?
+      -if user_signed_in? && current_user.admin?
         %td
           .btn-group
             =link_to 'Show', document, :class => 'btn'
