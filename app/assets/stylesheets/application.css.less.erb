@@ -1,0 +1,60 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/
+
+@import "twitter/bootstrap/reset.less";
+@import "twitter/bootstrap/variables.less";
+@import "twitter/bootstrap/mixins.less";
+@import "twitter/bootstrap/scaffolding.less";
+@import "twitter/bootstrap/grid.less";
+@import "twitter/bootstrap/layouts.less";
+@import "twitter/bootstrap/type.less";
+@import "twitter/bootstrap/forms.less";
+@import "twitter/bootstrap/wells.less";
+@import "twitter/bootstrap/component-animations.less";
+@import "twitter/bootstrap/buttons.less";
+@import "twitter/bootstrap/button-groups.less";
+@import "twitter/bootstrap/close.less";
+@import "twitter/bootstrap/navs.less";
+@import "twitter/bootstrap/navbar.less";
+@import "twitter/bootstrap/labels-badges.less";
+@import "twitter/bootstrap/hero-unit.less";
+@import "twitter/bootstrap/utilities.less";
+@import "twitter/bootstrap/tables.less";
+@import "twitter/bootstrap/sprites.less";
+
+@cscuBlue: #200D81;
+@cscuYellow: #EBA801;
+
+@heroUnitBackground: darken(#f2f2f2, 20%);
+
+@navbarBackgroundHighlight: lighten(@cscuYellow, 25%);
+@navbarBackground: @cscuYellow;
+@navbarBrandColor: darken(@cscuYellow, 20%);
+@navbarText: darken(@cscuYellow, 20%);
+@navbarLinkColor: darken(@cscuYellow, 20%);
+@navbarLinkColorHover: black;
+@navbarSearchBackgroundFocus: lighten(@navbarBackground, 25%);
+@navbarSearchPlaceholderColor: darken(@cscuYellow, 10%);
+
+@linkColor: #01579f;
+@linkColorHover: #0181eb;
+
+body {
+  background: #f2f2f2 url(<%= asset_data_uri 'noise.png' %>);
+}
+
+.navbar-inner {
+  border-radius: 0
+}
+
+.navbar-search .search-query{
+  color: inherit;
+  &:focus {
+    text-shadow: none;
+  }
+}

@@ -23,10 +23,10 @@
         %ul.nav
           %li
             =link_to "Courses", courses_path
-          %li
-            %form{:action => course_search_path}
-              %input{:type => 'search', :name => 'query', :placeholder => 'Course Code (eg. CPS109)'}
-              %input{:type => 'submit', :value => 'Search'}
+        %form{:action => course_search_path, :class => 'navbar-search'}
+          %input{:type => 'search', :name => 'query', :class => 'search-query', :placeholder => 'Search by Course Code'}
+          %input{:type => 'submit', :value => 'Search', :style => 'display:none;'}
+        %ul.nav.pull-right
           -if user_signed_in?
             %li
               =link_to "Logout", destroy_user_session_path, :method=>'delete'
