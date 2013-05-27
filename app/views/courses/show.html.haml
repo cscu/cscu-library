@@ -34,13 +34,13 @@
           %td
             - if doc.file.exists?
               =link_to doc.file.url, :class => 'btn' do
-                %i.icon-download
+                %i.icon-cloud-download
                 Download
             - else
               Available in ENG111
 -if user_signed_in? && current_user.admin?
   = link_to new_document_path({:course => @course}), :class => 'btn' do
-    %i.icon-upload
+    %i.icon-plus-sign
     Add Document
 
 - unless @course.prerequisites.empty?
