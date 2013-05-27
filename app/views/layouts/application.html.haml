@@ -29,10 +29,14 @@
         %ul.nav.pull-right
           -if user_signed_in?
             %li
-              =link_to "Logout", destroy_user_session_path, :method=>'delete'
+              =link_to destroy_user_session_path, :method=>'delete' do
+                %i.icon-signout
+                Logout
           -else
             %li
-              =link_to "Login", new_user_session_path
+              =link_to new_user_session_path do
+                %i.icon-signin
+                Login
     .container
       =yield
 
