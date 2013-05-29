@@ -57,7 +57,7 @@ class Course < ActiveRecord::Base
 
   def Course.create_from_ryerson_calendar(calendar)
     courses = parse_ryerson_calendar(calendar)
-    courses.each do |c| 
+    courses.each do |c|
       if existing = find_by_code("#{c[:subject]}#{c[:number]}")
         existing.update_attributes(:name => c[:name], :description => c[:description])
       else

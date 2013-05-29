@@ -26,7 +26,7 @@ describe CoursesController do
   def valid_attributes
     {}
   end
-  
+
   describe "GET index" do
     context "anonymous user" do
       before(:each){logout}
@@ -315,7 +315,7 @@ describe CoursesController do
 
     context "admin user" do
       before(:each){login_admin}
-      
+
       it "destroys the requested course" do
         course = Course.create! valid_attributes
         expect {
