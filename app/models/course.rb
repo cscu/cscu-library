@@ -1,4 +1,5 @@
 class Course < ActiveRecord::Base
+  attr_accessible :name, :code, :subject, :number, :description
   has_many :prerequisite_relationships, :foreign_key => "prereq_for_id",
                                         :class_name => "Prerequisite",
                                         :dependent => :destroy
