@@ -1,0 +1,12 @@
+{
+  "name": "exambank",
+  "version": "0.0.0",
+  "description": "CSCU Exam Bank",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.5.4",
+    "matchdep": "~0.1.2",
+    "grunt-coffeelint": "0.0.6"
+  }
+}
