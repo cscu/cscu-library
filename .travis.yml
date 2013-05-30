@@ -4,6 +4,7 @@ rvm:
   - 1.9.2
 before_script:
   - npm install
+  - npm install -g grunt-cli
 script:
   - bundle exec rake rails_best_practices
   - grunt lint
