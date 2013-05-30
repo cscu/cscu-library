@@ -2,7 +2,12 @@ language: ruby
 rvm:
   - 1.9.3
   - 1.9.2
+before_script:
+  - npm install
+  - npm install -g grunt-cli
 script:
+  - bundle exec rake rails_best_practices
+  - grunt lint
   - RAILS_ENV=test bundle exec rake db:migrate
   - bundle exec rake db:test:prepare
   - bundle exec rake spec

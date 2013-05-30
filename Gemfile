@@ -36,6 +36,7 @@ group :development, :test do
   gem 'ZenTest', '~> 4.9'
   gem 'factory_girl_rails', '~> 3.0'
   gem 'sqlite3'
+  gem 'rails_best_practices'
 end
 
 group :production do

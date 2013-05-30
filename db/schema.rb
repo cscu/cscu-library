@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130506213154) do
+ActiveRecord::Schema.define(:version => 20130529231147) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20130506213154) do
     t.string   "semester"
     t.string   "category"
   end
+
+  add_index "documents", ["course_id"], :name => "index_documents_on_course"
 
   create_table "prerequisites", :force => true do |t|
     t.integer  "prereq_for_id"

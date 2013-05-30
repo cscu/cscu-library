@@ -4,3 +4,5 @@ log/*.log
 tmp/
 .sass-cache/
 public/documents/*
+node_modules/*
+rails_best_practices_output.html

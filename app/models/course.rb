@@ -1,4 +1,5 @@
 class Course < ActiveRecord::Base
+  attr_accessible :name, :code, :subject, :number, :description
   has_many :prerequisite_relationships, :foreign_key => "prereq_for_id",
                                         :class_name => "Prerequisite",
                                         :dependent => :destroy
@@ -56,7 +57,7 @@ class Course < ActiveRecord::Base
 
   def Course.create_from_ryerson_calendar(calendar)
     courses = parse_ryerson_calendar(calendar)
-    courses.each do |c| 
+    courses.each do |c|
       if existing = find_by_code("#{c[:subject]}#{c[:number]}")
         existing.update_attributes(:name => c[:name], :description => c[:description])
       else

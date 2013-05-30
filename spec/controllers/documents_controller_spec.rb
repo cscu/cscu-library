@@ -26,7 +26,7 @@ describe DocumentsController do
   def valid_attributes
     {}
   end
-  
+
   describe "GET index" do
     context "anonymous user" do
       before(:each){logout}

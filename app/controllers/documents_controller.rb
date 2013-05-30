@@ -36,7 +36,7 @@ class DocumentsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html 
+      format.html
       format.json { render json: @document }
     end
   end
@@ -56,7 +56,7 @@ class DocumentsController < ApplicationController
         format.html { redirect_to @document, notice: 'Document was successfully created.' }
         format.json { render json: @document, status: :created, location: @document }
       else
-        format.html { render action: "new" }
+        format.html { render :new }
         format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end
@@ -72,7 +72,7 @@ class DocumentsController < ApplicationController
         format.html { redirect_to @document, notice: 'Document was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
+        format.html { render :edit }
         format.json { render json: @document.errors, status: :unprocessable_entity }
       end
     end

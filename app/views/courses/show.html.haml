@@ -21,7 +21,7 @@
       %th
       - sort_by_year(@course.documents).each do |doc|
         %tr
-          %td 
+          %td
             =link_to doc.title, document_path(doc)
           %td
             =doc.category
@@ -44,7 +44,7 @@
     Add Document
 
 - unless @course.prerequisites.empty?
-  %h2 
+  %h2
     Prerequisites
   %table.table-striped
     %tr
@@ -54,7 +54,7 @@
       %tr
         %td= link_to prereq.code, course_path(prereq)
         %td= prereq.name
-    
+
 %hr
 
 -if user_signed_in? && current_user.admin?

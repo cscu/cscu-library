@@ -1,4 +1,5 @@
 class Document < ActiveRecord::Base
+  attr_accessible :title, :course_id, :year, :semester, :category, :file
   belongs_to :course
   has_attached_file :file,
     :url => '/documents/:id/:attachment/:filename',
