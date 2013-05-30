@@ -27,5 +27,6 @@ begin
     })
     analyzer.analyze
     analyzer.output
+    puts "Results written to #{output_file}"
   end
 end
