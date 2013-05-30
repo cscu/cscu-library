@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/cscu/cscu-library.png?branch=master)](https://travis-ci.org/cscu/cscu-library)
 
+See the live site at: [exams.ryehigh.ca](http://exams.ryehigh.ca/)
+
 Quick links: [Hosting](#hosting), [Development](#development)
 
 # Configuration
