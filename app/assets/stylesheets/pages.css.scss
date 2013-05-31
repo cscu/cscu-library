@@ -1,0 +1,21 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.gitdevelopers {
+  ul {
+    list-style: none;
+  }
+  li {
+    margin-top: 15px;
+  }
+  .contributor {
+    img {
+      border-radius: 20px;
+    }
+    span {
+      font-size: 20px;
+      padding: 15px;
+    }
+  }
+}

@@ -27,6 +27,8 @@
           %input{:type => 'search', :name => 'query', :class => 'search-query', :placeholder => 'Search by Course Code'}
           %input{:type => 'submit', :value => 'Search', :style => 'display:none;'}
         %ul.nav.pull-right
+          %li
+            =link_to "About", about_path
           -if user_signed_in?
             %li
               =link_to destroy_user_session_path, :method=>'delete' do
